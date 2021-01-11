@@ -2,9 +2,6 @@ sudo: required
 services:
   - docker
 
-script:
-  - docker run sohan0077/docker-multi-test npm test -- --coverage
-
 after_success:
   - docker build -t sohan0077/docker-multi-client ./client
   - docker build -t sohan0077/docker-multi-server ./server
