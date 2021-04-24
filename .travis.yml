@@ -13,6 +13,7 @@ after_success:
   - docker build -t sohan0077/ano-multi-worker ./worker
   - docker build -t sohan0077/ano-multi-server ./server
   - docker build -t sohan0077/ano-multi-nginx ./nginx
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push sohan0077/ano-multi-client
   - docker push sohan0077/ano-multi-worker
   - docker push sohan0077/ano-multi-server
