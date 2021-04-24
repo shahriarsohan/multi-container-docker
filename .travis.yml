@@ -1,0 +1,19 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t sohan0077/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run sohan0077/react-test npm run test -- --coverage
+
+after_success:
+  - docker build -t sohan0077/ano-multi-client ./client
+  - docker build -t sohan0077/ano-multi-worker ./worker
+  - docker build -t sohan0077/ano-multi-server ./server
+  - docker build -t sohan0077/ano-multi-nginx ./nginx
+  - docker push sohan0077/ano-multi-client
+  - docker push sohan0077/ano-multi-worker
+  - docker push sohan0077/ano-multi-server
+  - docker push sohan0077/ano-multi-nginx
