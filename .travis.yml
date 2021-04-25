@@ -18,3 +18,16 @@ after_success:
   - docker push sohan0077/ano-multi-worker
   - docker push sohan0077/ano-multi-server
   - docker push sohan0077/ano-multi-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: ap-south-1
+  app: multi-docker-test
+  env: Multidockertest-env
+  bucket_name: elasticbeanstalk-ap-south-1-806822280125
+  bucket_path: test-path
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secrest_access_key:
+    secure: $AWS_SECRET_KEY
